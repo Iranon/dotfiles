@@ -30,7 +30,7 @@ set t_Co=256
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 
-" Plugins
+" Plugins [Vim-Plug: https://github.com/junegunn/vim-plug]
 call plug#begin()
     Plug 'vim-airline/vim-airline'
     Plug 'ryanoasis/vim-devicons'
