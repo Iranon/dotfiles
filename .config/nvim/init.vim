@@ -42,6 +42,7 @@ call plug#begin()
     Plug 'tpope/vim-fugitive'
     " Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 let g:airline_powerline_fonts = 1
@@ -68,11 +69,15 @@ if exists('+termguicolors')
 endif
 
 " Normal mode remappings
-nnoremap <F5> :NERDTreeToggle<CR>
+nnoremap qq :q<CR>
+nnoremap <F3> :NERDTreeToggle<CR>
 nnoremap <F6> :sp<CR>:terminal<CR>
-nnoremap gdh :diffget //2<CR>
-nnoremap gdl :diffget //3<CR>
+nnoremap gl :diffget //2<CR>
+nnoremap gr :diffget //3<CR>
 nnoremap dup :diffupdate<CR>
+nnoremap lb :ls<CR>
+nnoremap <F9> :n<CR>
+nnoremap <F7> :N<CR>
 
 " Show documentation in preview window
 function! s:show_documentation()
@@ -84,5 +89,29 @@ function! s:show_documentation()
 endfunction
 nnoremap <silent> L :call <SID>show_documentation()<CR>
 
-" Highlight the symbol and its references when holding the cursor.
+" Highlight the symbol and its references when holding the cursor
 " autocmd CursorHold * silent call <SID>show_documentation()
+
+" Lua config scripts
+" treesitter
+" ----------
+lua << EOF
+    require'nvim-treesitter.configs'.setup {
+        ensure_installed = {
+            "html", "css", "scss", "javascript", "typescript", "tsx", "regex",
+            "json", "yaml", "toml"
+        },
+        sync_install = false,
+        
+        highlight = {
+            -- `false` will disable the whole extension
+            enable = true,
+            
+            -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+            -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+            -- Using this option may slow down your editor, and you may see some duplicate highlights.
+            -- Instead of true it can also be a list of languages
+            additional_vim_regex_highlighting = false,
+        },
+    }
+EOF
