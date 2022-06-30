@@ -30,10 +30,14 @@ set t_Co=256
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 
+" ============================================================================================================================
+
 " Plugins [Vim-Plug: https://github.com/junegunn/vim-plug]
 call plug#begin()
     Plug 'sonph/onehalf', { 'rtp': 'vim' }
+    Plug 'savq/melange'
     Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
     Plug 'ryanoasis/vim-devicons'
     Plug 'sheerun/vim-polyglot'
     Plug 'jiangmiao/auto-pairs'
@@ -45,9 +49,12 @@ call plug#begin()
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
+" ============================================================================================================================
+
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let NERDTreeShowHidden=1
+let g:airline_theme='molokai'
 
 " Use NeoSolarized
 " -----------------
@@ -57,16 +64,23 @@ let NERDTreeShowHidden=1
 
 " Use OneHalf
 " -----------------
-syntax on
-colorscheme onehalfdark
-let g:airline_theme='onehalfdark'
-" lightline
-" let g:lightline = { 'colorscheme': 'onehalfdark' }
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
+" syntax on
+" colorscheme onehalfdark
+" let g:airline_theme='onehalfdark'
+" " lightline
+" " let g:lightline = { 'colorscheme': 'onehalfdark' }
+" if exists('+termguicolors')
+"   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"   set termguicolors
+" endif
+
+" Use Melange
+" -----------------
+set termguicolors
+colorscheme melange
+
+" ============================================================================================================================
 
 " Normal mode remappings
 nnoremap qq :q<CR>
@@ -91,6 +105,8 @@ nnoremap <silent> L :call <SID>show_documentation()<CR>
 
 " Highlight the symbol and its references when holding the cursor
 " autocmd CursorHold * silent call <SID>show_documentation()
+
+" ============================================================================================================================
 
 " Lua config scripts
 " treesitter
