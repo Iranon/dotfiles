@@ -30,6 +30,7 @@ set t_Co=256
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 
+
 " ============================================================================================================================
 
 " Plugins [Vim-Plug: https://github.com/junegunn/vim-plug]
@@ -39,6 +40,7 @@ call plug#begin()
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'ryanoasis/vim-devicons'
+    Plug 'catppuccin/nvim', {'as': 'catppuccin'}
     Plug 'sheerun/vim-polyglot'
     Plug 'jiangmiao/auto-pairs'
     Plug 'ap/vim-css-color'
@@ -50,6 +52,9 @@ call plug#begin()
 call plug#end()
 
 " ============================================================================================================================
+
+
+" Themes
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -77,10 +82,19 @@ let g:airline_theme='molokai'
 
 " Use Melange
 " -----------------
-set termguicolors
-colorscheme melange
+" set termguicolors
+" colorscheme melange
+
+" Use Catpuccin (https://github.com/catppuccin/nvim)
+" ---------------------------------------------------
+let g:catppuccin_flavour = "macchiato" " latte, frappe, macchiato, mocha
+lua << EOF
+require("catppuccin").setup()
+EOF
+colorscheme catppuccin
 
 " ============================================================================================================================
+
 
 " Normal mode remappings
 nnoremap qq :q<CR>
@@ -108,14 +122,14 @@ nnoremap <silent> L :call <SID>show_documentation()<CR>
 
 " ============================================================================================================================
 
-" Lua config scripts
-" treesitter
-" ----------
+
+" Lua treesitter config script
+" -----------------------------
 lua << EOF
     require'nvim-treesitter.configs'.setup {
         ensure_installed = {
             "html", "css", "scss", "javascript", "typescript", "tsx", "regex",
-            "json", "yaml", "toml"
+            "json", "yaml", "toml", "bash"
         },
         sync_install = false,
         
