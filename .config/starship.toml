@@ -48,6 +48,7 @@ symbol = " "
 symbol = " "
 
 [directory]
+format = '[󰝰 $path]($style)[$read_only]($read_only_style) '
 style = "bright-black"
 read_only = " "
 truncation_length = 4
@@ -172,3 +173,8 @@ symbol = " "
 
 [spack]
 symbol = "🅢 "
+
+[username]
+show_always = false
+style_user = 'purple'
+format = '[󰇴 $user]($style) '
