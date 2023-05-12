@@ -50,7 +50,7 @@ symbol = " "
 
 [directory]
 format = '[󰝰 $path]($style)[$read_only]($read_only_style) '
-style = "bright-black"
+style = "180"
 read_only = " "
 truncation_length = 4
 truncate_to_repo = false
@@ -70,7 +70,7 @@ symbol = " "
 [git_branch]
 symbol = " "
 format = "[$symbol$branch]($style) "
-style = "blue"
+style = "39"
 
 [golang]
 symbol = " "
